@@ -5,6 +5,8 @@ const navLinks = [
   { path: '/', label: 'หน้าหลัก', icon: '🏠' },
   { path: '/items', label: 'ไอเทม', icon: '⚔️' },
   { path: '/monsters', label: 'มอนสเตอร์', icon: '👾' },
+  { path: '/maps', label: 'แผนที่', icon: '🗺️' },
+  { path: '/skills', label: 'สกิล', icon: '✨' },
 ];
 
 export default function Navbar() {

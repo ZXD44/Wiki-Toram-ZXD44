@@ -6,6 +6,8 @@ import ItemsPage from './pages/ItemsPage';
 import ItemDetailPage from './pages/ItemDetailPage';
 import MonstersPage from './pages/MonstersPage';
 import MonsterDetailPage from './pages/MonsterDetailPage';
+import MapsPage from './pages/MapsPage';
+import SkillsPage from './pages/SkillsPage';
 
 export default function App() {
   return (
@@ -19,6 +21,8 @@ export default function App() {
             <Route path="/items/:id" element={<ItemDetailPage />} />
             <Route path="/monsters" element={<MonstersPage />} />
             <Route path="/monsters/:id" element={<MonsterDetailPage />} />
+            <Route path="/maps" element={<MapsPage />} />
+            <Route path="/skills" element={<SkillsPage />} />
           </Routes>
         </main>
         <Footer />
