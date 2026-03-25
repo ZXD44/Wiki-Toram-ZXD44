@@ -69,10 +69,10 @@ Wiki Toram Online TH คือเว็บไซต์ฐานข้อมู�
 
 ```bash
 # 1. Clone repository
-git clone https://github.com/your-username/wiki-toram.git
+git clone https://github.com/ZXD44/Wiki-Toram-ZXD44.git
 
 # 2. เข้าไปในโฟลเดอร์โปรเจกต์
-cd wiki-toram
+cd Wiki-Toram-ZXD44
 
 # 3. ติดตั้ง dependencies
 npm install
