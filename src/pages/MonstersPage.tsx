@@ -146,14 +146,18 @@ export default function MonstersPage() {
                 className="group p-5 rounded-2xl glass glass-hover card-glow transition-all duration-300 hover:scale-[1.02]"
               >
                 <div className="flex items-start gap-4 mb-4">
-                  <div className={`w-14 h-14 rounded-xl flex items-center justify-center text-2xl border shrink-0 ${
+                  <div className={`w-14 h-14 rounded-xl flex items-center justify-center text-2xl border shrink-0 overflow-hidden ${
                     monster.type === 'boss'
                       ? 'bg-gradient-to-br from-red-500/20 to-red-600/10 border-red-500/20'
                       : monster.type === 'mini_boss'
                         ? 'bg-gradient-to-br from-amber-500/20 to-amber-600/10 border-amber-500/20'
                         : 'bg-gradient-to-br from-surface-700/40 to-surface-800/30 border-surface-700/30'
                   }`}>
-                    {monster.type === 'boss' ? '🐉' : monster.type === 'mini_boss' ? '⚡' : '👾'}
+                    {monster.image_url ? (
+                      <img src={monster.image_url} alt={monster.name_th} className="w-full h-full object-cover" />
+                    ) : (
+                      monster.type === 'boss' ? '🐉' : monster.type === 'mini_boss' ? '⚡' : '👾'
+                    )}
                   </div>
                   <div className="flex-1 min-w-0">
                     <h3 className="font-bold text-surface-100 leading-tight group-hover:text-primary-300 transition-colors">

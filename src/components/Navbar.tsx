@@ -1,5 +1,6 @@
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
+import type { KeyboardEvent } from 'react';
 
 const navLinks = [
   { path: '/', label: 'หน้าหลัก', icon: '🏠' },
@@ -11,7 +12,17 @@ const navLinks = [
 
 export default function Navbar() {
   const location = useLocation();
+  const navigate = useNavigate();
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
+
+  const handleSearch = (e: KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter' && searchQuery.trim()) {
+      navigate(`/search?q=${encodeURIComponent(searchQuery.trim())}`);
+      setMobileOpen(false);
+      setSearchQuery('');
+    }
+  };
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 glass border-b border-primary-500/10">
@@ -19,9 +30,7 @@ export default function Navbar() {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <Link to="/" className="flex items-center gap-3 group">
-            <div className="relative w-10 h-10 rounded-xl bg-gradient-to-br from-primary-500 to-accent-500 flex items-center justify-center text-xl font-black text-white shadow-lg shadow-primary-500/25 group-hover:shadow-primary-500/50 transition-shadow duration-300">
-              T
-            </div>
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQF-vjKGoWQm2h6Df8QwI5-TH4lDSWAl9XlsA&s" alt="Toram Logo" className="w-10 h-10 rounded-xl object-cover shadow-lg shadow-primary-500/25 group-hover:shadow-primary-500/50 transition-shadow duration-300" />
             <div className="hidden sm:block">
               <span className="text-lg font-bold gradient-text">Wiki Toram</span>
               <span className="block text-xs text-surface-200/60 -mt-0.5">ฐานข้อมูลเกม Toram Online</span>
@@ -55,6 +64,9 @@ export default function Navbar() {
               <input
                 type="text"
                 placeholder="ค้นหา..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                onKeyDown={handleSearch}
                 className="w-56 lg:w-72 bg-surface-800/60 border border-surface-700/50 rounded-xl px-4 py-2 pl-10 text-sm text-surface-100 placeholder:text-surface-200/40 focus:outline-none focus:border-primary-500/50 focus:ring-2 focus:ring-primary-500/20 transition-all duration-200"
               />
               <svg className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-surface-200/40" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -107,6 +119,9 @@ export default function Navbar() {
               <input
                 type="text"
                 placeholder="ค้นหา..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                onKeyDown={handleSearch}
                 className="w-full bg-surface-800/60 border border-surface-700/50 rounded-xl px-4 py-2.5 text-sm text-surface-100 placeholder:text-surface-200/40 focus:outline-none focus:border-primary-500/50"
               />
             </div>

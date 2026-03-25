@@ -1,11 +1,14 @@
 import { useParams, Link } from 'react-router-dom';
+import { useState } from 'react';
 import { items } from '../data/items';
 import { monsters } from '../data/monsters';
 import { ItemTypeBadge, StatBar } from '../components/GameBadges';
+import ImageModal from '../components/ImageModal';
 
 export default function ItemDetailPage() {
   const { id } = useParams<{ id: string }>();
   const item = items.find(i => i.id === Number(id));
+  const [isImageOpen, setIsImageOpen] = useState(false);
 
   if (!item) {
     return (
@@ -43,8 +46,17 @@ export default function ItemDetailPage() {
         {/* Header Card */}
         <div className="p-6 sm:p-8 rounded-2xl glass animate-slide-up mb-6">
           <div className="flex flex-col sm:flex-row items-start gap-6">
-            <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-primary-500/30 to-accent-500/20 flex items-center justify-center text-4xl border border-primary-500/20 shrink-0 animate-pulse-glow">
-              {getSubTypeIcon(item.sub_type)}
+            <div 
+              className={`w-20 h-20 rounded-2xl flex items-center justify-center text-4xl border border-primary-500/20 shrink-0 overflow-hidden ${
+                item.image_url ? 'cursor-pointer hover:scale-105 transition-transform' : 'bg-gradient-to-br from-primary-500/30 to-accent-500/20 animate-pulse-glow'
+              }`}
+              onClick={() => item.image_url && setIsImageOpen(true)}
+            >
+              {item.image_url ? (
+                <img src={item.image_url} alt={item.name_th} className="w-full h-full object-cover" />
+              ) : (
+                getSubTypeIcon(item.sub_type)
+              )}
             </div>
             <div className="flex-1">
               <div className="flex flex-wrap items-center gap-3 mb-2">
@@ -129,6 +141,15 @@ export default function ItemDetailPage() {
           </div>
         </div>
       </div>
+
+      {item.image_url && (
+        <ImageModal 
+          isOpen={isImageOpen} 
+          imageUrl={item.image_url} 
+          altText={item.name_th} 
+          onClose={() => setIsImageOpen(false)} 
+        />
+      )}
     </div>
   );
 }

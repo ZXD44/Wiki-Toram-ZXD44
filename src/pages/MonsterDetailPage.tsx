@@ -1,10 +1,13 @@
 import { useParams, Link } from 'react-router-dom';
+import { useState } from 'react';
 import { monsters } from '../data/monsters';
 import { ElementBadge, MonsterTypeBadge, formatNumber } from '../components/GameBadges';
+import ImageModal from '../components/ImageModal';
 
 export default function MonsterDetailPage() {
   const { id } = useParams<{ id: string }>();
   const monster = monsters.find(m => m.id === Number(id));
+  const [isImageOpen, setIsImageOpen] = useState(false);
 
   if (!monster) {
     return (
@@ -38,14 +41,23 @@ export default function MonsterDetailPage() {
         {/* Header Card */}
         <div className="p-6 sm:p-8 rounded-2xl glass animate-slide-up mb-6">
           <div className="flex flex-col sm:flex-row items-start gap-6">
-            <div className={`w-20 h-20 rounded-2xl flex items-center justify-center text-4xl shrink-0 animate-pulse-glow border ${
-              monster.type === 'boss'
-                ? 'bg-gradient-to-br from-red-500/30 to-red-600/20 border-red-500/20'
-                : monster.type === 'mini_boss'
-                  ? 'bg-gradient-to-br from-amber-500/30 to-amber-600/20 border-amber-500/20'
-                  : 'bg-gradient-to-br from-surface-700/50 to-surface-800/30 border-surface-700/30'
-            }`}>
-              {monster.type === 'boss' ? '🐉' : monster.type === 'mini_boss' ? '⚡' : '👾'}
+            <div 
+              className={`w-20 h-20 rounded-2xl flex items-center justify-center text-4xl shrink-0 border overflow-hidden ${
+                monster.image_url ? 'cursor-pointer hover:scale-105 transition-transform border-surface-700/30 bg-surface-800/50' : `animate-pulse-glow ${
+                  monster.type === 'boss'
+                    ? 'bg-gradient-to-br from-red-500/30 to-red-600/20 border-red-500/20'
+                    : monster.type === 'mini_boss'
+                      ? 'bg-gradient-to-br from-amber-500/30 to-amber-600/20 border-amber-500/20'
+                      : 'bg-gradient-to-br from-surface-700/50 to-surface-800/30 border-surface-700/30'
+                }`
+              }`}
+              onClick={() => monster.image_url && setIsImageOpen(true)}
+            >
+              {monster.image_url ? (
+                <img src={monster.image_url} alt={monster.name_th} className="w-full h-full object-cover" />
+              ) : (
+                monster.type === 'boss' ? '🐉' : monster.type === 'mini_boss' ? '⚡' : '👾'
+              )}
             </div>
             <div className="flex-1">
               <div className="flex flex-wrap items-center gap-3 mb-2">
@@ -174,6 +186,15 @@ export default function MonsterDetailPage() {
           </div>
         </div>
       </div>
+
+      {monster.image_url && (
+        <ImageModal 
+          isOpen={isImageOpen} 
+          imageUrl={monster.image_url} 
+          altText={monster.name_th} 
+          onClose={() => setIsImageOpen(false)} 
+        />
+      )}
     </div>
   );
 }

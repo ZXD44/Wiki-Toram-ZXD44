@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { items } from '../data/items';
 import { monsters } from '../data/monsters';
+import { formatNumber } from '../components/GameBadges';
 
 export default function HomePage() {
   const bossMonsters = monsters.filter(m => m.type === 'boss');
@@ -101,8 +102,10 @@ export default function HomePage() {
                 className="group p-5 rounded-2xl glass glass-hover card-glow transition-all duration-300 hover:scale-[1.02]"
               >
                 <div className="flex items-center gap-3 mb-4">
-                  <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-red-500/20 to-red-600/10 flex items-center justify-center text-2xl border border-red-500/20">
-                    🐉
+                  <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-red-500/20 to-red-600/10 flex items-center justify-center text-2xl border border-red-500/20 shrink-0 overflow-hidden">
+                    {monster.image_url ? (
+                      <img src={monster.image_url} alt={monster.name_th} className="w-full h-full object-cover" />
+                    ) : '🐉'}
                   </div>
                   <div className="flex-1 min-w-0">
                     <h3 className="font-semibold text-surface-100 truncate group-hover:text-primary-300 transition-colors">
@@ -115,7 +118,7 @@ export default function HomePage() {
                 <div className="space-y-2">
                   <div className="flex justify-between text-xs">
                     <span className="text-surface-200/50">Lv. {monster.level}</span>
-                    <span className="text-red-400 font-medium">HP {(monster.hp / 1_000_000).toFixed(1)}M</span>
+                    <span className="text-red-400 font-medium">HP {formatNumber(monster.hp)}</span>
                   </div>
                   <div className="flex items-center gap-2">
                     <span className="text-xs">{getElementEmoji(monster.element)}</span>
@@ -154,8 +157,10 @@ export default function HomePage() {
                 className="group p-5 rounded-2xl glass glass-hover card-glow transition-all duration-300 hover:scale-[1.02]"
               >
                 <div className="flex items-center gap-3 mb-4">
-                  <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary-500/20 to-accent-500/10 flex items-center justify-center text-2xl border border-primary-500/20">
-                    {getItemIcon(item.sub_type)}
+                  <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary-500/20 to-accent-500/10 flex items-center justify-center text-2xl border border-primary-500/20 shrink-0 overflow-hidden">
+                    {item.image_url ? (
+                      <img src={item.image_url} alt={item.name_th} className="w-full h-full object-cover" />
+                    ) : getItemIcon(item.sub_type)}
                   </div>
                   <div className="flex-1 min-w-0">
                     <h3 className="font-semibold text-surface-100 truncate group-hover:text-primary-300 transition-colors">
@@ -168,7 +173,7 @@ export default function HomePage() {
                 <div className="space-y-2">
                   <div className="flex justify-between text-xs">
                     <span className="text-surface-200/50">Lv. {item.level_req}</span>
-                    <span className="text-primary-400 font-medium">{item.sub_type}</span>
+                    <span className="text-primary-400 font-medium">{getSubTypeThai(item.sub_type)}</span>
                   </div>
                   {item.stats[0] && (
                     <div className="text-xs text-amber-400 font-medium">
@@ -200,7 +205,17 @@ function getItemIcon(subType: string): string {
   const map: Record<string, string> = {
     sword: '🗡️', bow: '🏹', bowgun: '🔫', staff: '🪄', magic_device: '🔮',
     halberd: '🪓', katana: '⚔️', knuckle: '🥊', dual_sword: '⚔️',
-    body_armor: '🛡️', weapon_crystal: '💎',
+    body_armor: '🛡️', weapon_crystal: '💎', armor_crystal: '💎', mob_drop: '📦'
   };
   return map[subType] || '📦';
+}
+
+function getSubTypeThai(subType: string): string {
+  const map: Record<string, string> = {
+    sword: 'ดาบ', bow: 'ธนู', bowgun: 'หน้าไม้', staff: 'ไม้เท้า', magic_device: 'เครื่องราง',
+    halberd: 'หอก', katana: 'ดาบซามูไร', knuckle: 'สนับมือ', dual_sword: 'ดาบสเปเชียล',
+    body_armor: 'ชุดเกราะ', weapon_crystal: 'คริสตัลอาวุธ', armor_crystal: 'คริสตัลชุดเกราะ',
+    mob_drop: 'วัตถุดิบดรอป', boss_drop: 'วัตถุดิบบอส'
+  };
+  return map[subType] || subType;
 }

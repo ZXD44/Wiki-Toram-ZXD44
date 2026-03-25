@@ -123,8 +123,12 @@ export default function ItemsPage() {
               >
                 {/* Item icon & name */}
                 <div className="flex items-start gap-3 mb-4">
-                  <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-primary-500/20 to-accent-500/10 flex items-center justify-center text-2xl border border-primary-500/20 shrink-0">
-                    {subTypeIcons[item.sub_type] || '📦'}
+                  <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-primary-500/20 to-accent-500/10 flex items-center justify-center text-2xl border border-primary-500/20 shrink-0 overflow-hidden">
+                    {item.image_url ? (
+                      <img src={item.image_url} alt={item.name_th} className="w-full h-full object-cover" />
+                    ) : (
+                      subTypeIcons[item.sub_type] || '📦'
+                    )}
                   </div>
                   <div className="flex-1 min-w-0">
                     <h3 className="font-bold text-surface-100 leading-tight group-hover:text-primary-300 transition-colors">

@@ -61,17 +61,17 @@ export function StatBar({ label, value, maxValue, type }: { label: string; value
   const barPercent = maxValue ? (value / maxValue) * 100 : Math.min(value / 5, 100);
 
   return (
-    <div className="flex items-center gap-3 text-sm group">
-      <span className="w-32 text-surface-200/60 shrink-0 text-xs font-medium tracking-wide">{label}</span>
+    <div className="flex items-center gap-2 sm:gap-3 text-sm group w-full">
+      <span className="w-24 sm:w-32 text-surface-200/60 shrink-0 text-[11px] sm:text-xs font-medium tracking-wide truncate" title={label}>{label}</span>
       <div className="flex-1 h-2 bg-surface-800/60 rounded-full overflow-hidden">
         <div
           className="h-full rounded-full bg-gradient-to-r from-primary-500 to-accent-400 transition-all duration-700 ease-out group-hover:brightness-125"
           style={{ width: `${Math.min(barPercent, 100)}%` }}
         />
       </div>
-      <span className="text-surface-100 font-semibold w-16 text-right tabular-nums">{displayValue}</span>
+      <span className="text-surface-100 font-semibold w-12 sm:w-16 text-right tabular-nums text-xs sm:text-sm">{displayValue}</span>
       {maxValue && (
-        <span className="text-surface-200/40 text-xs w-16 text-right">max {maxValue}</span>
+        <span className="text-surface-200/40 text-[10px] sm:text-xs w-12 sm:w-16 text-right truncate">max {maxValue}</span>
       )}
     </div>
   );

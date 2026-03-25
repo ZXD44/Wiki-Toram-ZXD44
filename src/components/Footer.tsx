@@ -6,9 +6,7 @@ export default function Footer() {
           {/* Brand */}
           <div>
             <div className="flex items-center gap-3 mb-4">
-              <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-primary-500 to-accent-500 flex items-center justify-center text-sm font-black text-white">
-                T
-              </div>
+              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQF-vjKGoWQm2h6Df8QwI5-TH4lDSWAl9XlsA&s" alt="Toram Logo" className="w-8 h-8 rounded-lg object-cover" />
               <span className="text-lg font-bold gradient-text">Wiki Toram TH</span>
             </div>
             <p className="text-sm text-surface-200/50 leading-relaxed max-w-xs">
