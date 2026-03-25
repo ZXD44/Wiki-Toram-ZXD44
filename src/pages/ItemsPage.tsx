@@ -2,6 +2,7 @@ import { useState, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { items } from '../data/items';
 import { ItemTypeBadge } from '../components/GameBadges';
+import { getAssetPath } from '../utils/assets';
 import type { ItemType } from '../types';
 
 const itemTypeFilters: { value: ItemType | 'all'; label: string; icon: string }[] = [
@@ -125,7 +126,7 @@ export default function ItemsPage() {
                 <div className="flex items-start gap-3 mb-4">
                   <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-primary-500/20 to-accent-500/10 flex items-center justify-center text-2xl border border-primary-500/20 shrink-0 overflow-hidden">
                     {item.image_url ? (
-                      <img src={item.image_url} alt={item.name_th} className="w-full h-full object-cover" />
+                      <img src={getAssetPath(item.image_url)} alt={item.name_th} className="w-full h-full object-cover" />
                     ) : (
                       subTypeIcons[item.sub_type] || '📦'
                     )}

@@ -4,6 +4,7 @@ import { items } from '../data/items';
 import { monsters } from '../data/monsters';
 import { maps } from '../data/maps';
 import { skills } from '../data/skills';
+import { getAssetPath } from '../utils/assets';
 
 export default function SearchPage() {
   const [searchParams] = useSearchParams();
@@ -71,7 +72,7 @@ export default function SearchPage() {
                   {results.items.map(item => (
                     <Link key={`item-${item.id}`} to={`/items/${item.id}`} className="p-4 rounded-xl glass glass-hover card-glow flex items-center gap-4">
                       <div className="w-12 h-12 rounded-lg bg-surface-800/80 flex items-center justify-center text-xl shrink-0 overflow-hidden">
-                        {item.image_url ? <img src={item.image_url} alt="" className="w-full h-full object-cover" /> : '📦'}
+                        {item.image_url ? <img src={getAssetPath(item.image_url)} alt="" className="w-full h-full object-cover" /> : '📦'}
                       </div>
                       <div className="min-w-0">
                         <h4 className="font-semibold text-surface-100 truncate">{item.name_th}</h4>
@@ -94,7 +95,7 @@ export default function SearchPage() {
                   {results.monsters.map(monster => (
                     <Link key={`mon-${monster.id}`} to={`/monsters/${monster.id}`} className="p-4 rounded-xl glass glass-hover card-glow flex items-center gap-4">
                       <div className="w-12 h-12 rounded-lg bg-surface-800/80 flex items-center justify-center text-xl shrink-0 overflow-hidden">
-                        {monster.image_url ? <img src={monster.image_url} alt="" className="w-full h-full object-cover" /> : (monster.type === 'boss' ? '🐉' : '👾')}
+                        {monster.image_url ? <img src={getAssetPath(monster.image_url)} alt="" className="w-full h-full object-cover" /> : (monster.type === 'boss' ? '🐉' : '👾')}
                       </div>
                       <div className="min-w-0">
                         <h4 className="font-semibold text-surface-100 truncate">{monster.name_th}</h4>

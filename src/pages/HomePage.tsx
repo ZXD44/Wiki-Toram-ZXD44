@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { items } from '../data/items';
 import { monsters } from '../data/monsters';
 import { formatNumber } from '../components/GameBadges';
+import { getAssetPath } from '../utils/assets';
 
 export default function HomePage() {
   const bossMonsters = monsters.filter(m => m.type === 'boss');
@@ -104,7 +105,7 @@ export default function HomePage() {
                 <div className="flex items-center gap-3 mb-4">
                   <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-red-500/20 to-red-600/10 flex items-center justify-center text-2xl border border-red-500/20 shrink-0 overflow-hidden">
                     {monster.image_url ? (
-                      <img src={monster.image_url} alt={monster.name_th} className="w-full h-full object-cover" />
+                      <img src={getAssetPath(monster.image_url)} alt={monster.name_th} className="w-full h-full object-cover" />
                     ) : '🐉'}
                   </div>
                   <div className="flex-1 min-w-0">
@@ -159,7 +160,7 @@ export default function HomePage() {
                 <div className="flex items-center gap-3 mb-4">
                   <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary-500/20 to-accent-500/10 flex items-center justify-center text-2xl border border-primary-500/20 shrink-0 overflow-hidden">
                     {item.image_url ? (
-                      <img src={item.image_url} alt={item.name_th} className="w-full h-full object-cover" />
+                      <img src={getAssetPath(item.image_url)} alt={item.name_th} className="w-full h-full object-cover" />
                     ) : getItemIcon(item.sub_type)}
                   </div>
                   <div className="flex-1 min-w-0">

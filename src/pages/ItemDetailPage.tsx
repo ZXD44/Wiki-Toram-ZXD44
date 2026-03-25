@@ -4,6 +4,7 @@ import { items } from '../data/items';
 import { monsters } from '../data/monsters';
 import { ItemTypeBadge, StatBar } from '../components/GameBadges';
 import ImageModal from '../components/ImageModal';
+import { getAssetPath } from '../utils/assets';
 
 export default function ItemDetailPage() {
   const { id } = useParams<{ id: string }>();
@@ -53,7 +54,7 @@ export default function ItemDetailPage() {
               onClick={() => item.image_url && setIsImageOpen(true)}
             >
               {item.image_url ? (
-                <img src={item.image_url} alt={item.name_th} className="w-full h-full object-cover" />
+                <img src={getAssetPath(item.image_url)} alt={item.name_th} className="w-full h-full object-cover" />
               ) : (
                 getSubTypeIcon(item.sub_type)
               )}
@@ -145,7 +146,7 @@ export default function ItemDetailPage() {
       {item.image_url && (
         <ImageModal 
           isOpen={isImageOpen} 
-          imageUrl={item.image_url} 
+          imageUrl={getAssetPath(item.image_url)} 
           altText={item.name_th} 
           onClose={() => setIsImageOpen(false)} 
         />

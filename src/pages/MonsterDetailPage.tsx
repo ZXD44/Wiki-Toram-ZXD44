@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { monsters } from '../data/monsters';
 import { ElementBadge, MonsterTypeBadge, formatNumber } from '../components/GameBadges';
 import ImageModal from '../components/ImageModal';
+import { getAssetPath } from '../utils/assets';
 
 export default function MonsterDetailPage() {
   const { id } = useParams<{ id: string }>();
@@ -54,7 +55,7 @@ export default function MonsterDetailPage() {
               onClick={() => monster.image_url && setIsImageOpen(true)}
             >
               {monster.image_url ? (
-                <img src={monster.image_url} alt={monster.name_th} className="w-full h-full object-cover" />
+                <img src={getAssetPath(monster.image_url)} alt={monster.name_th} className="w-full h-full object-cover" />
               ) : (
                 monster.type === 'boss' ? '🐉' : monster.type === 'mini_boss' ? '⚡' : '👾'
               )}
@@ -190,7 +191,7 @@ export default function MonsterDetailPage() {
       {monster.image_url && (
         <ImageModal 
           isOpen={isImageOpen} 
-          imageUrl={monster.image_url} 
+          imageUrl={getAssetPath(monster.image_url)} 
           altText={monster.name_th} 
           onClose={() => setIsImageOpen(false)} 
         />

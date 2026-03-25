@@ -2,6 +2,7 @@ import { useState, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { monsters } from '../data/monsters';
 import { ElementBadge, MonsterTypeBadge, formatHP } from '../components/GameBadges';
+import { getAssetPath } from '../utils/assets';
 import type { MonsterType, ElementType } from '../types';
 
 const typeFilters: { value: MonsterType | 'all'; label: string; icon: string }[] = [
@@ -154,7 +155,7 @@ export default function MonstersPage() {
                         : 'bg-gradient-to-br from-surface-700/40 to-surface-800/30 border-surface-700/30'
                   }`}>
                     {monster.image_url ? (
-                      <img src={monster.image_url} alt={monster.name_th} className="w-full h-full object-cover" />
+                      <img src={getAssetPath(monster.image_url)} alt={monster.name_th} className="w-full h-full object-cover" />
                     ) : (
                       monster.type === 'boss' ? '🐉' : monster.type === 'mini_boss' ? '⚡' : '👾'
                     )}
