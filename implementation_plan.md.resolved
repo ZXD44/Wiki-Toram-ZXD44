@@ -1,0 +1,173 @@
+# 🎮 Wiki Toram Online - Implementation Plan
+
+## Overview
+เว็บไซต์ Wiki สำหรับเกม Toram Online เวอร์ชันภาษาไทย ออกแบบมาเพื่อให้ผู้เล่นชาวไทยเข้าถึงข้อมูลเกมได้ง่ายและสวยงาม
+
+## Tech Stack
+| Layer | Technology |
+|-------|-----------|
+| Frontend | React 19 + Vite |
+| Styling | TailwindCSS v4 |
+| Routing | React Router v7 |
+| State | React Context + useReducer |
+| Data | JSON files (Phase 1) → PostgreSQL (Phase 4) |
+| Deployment | Vercel / VPS + Nginx |
+
+## Phase 1: Foundation (Current)
+- [x] สร้างโปรเจกต์ React + Vite + TailwindCSS
+- [x] ออกแบบ Database Schema
+- [x] สร้าง UI Components พื้นฐาน
+- [x] หน้า Landing Page
+- [x] หน้ารายการ Items / Monsters
+- [x] หน้ารายละเอียดข้อมูล
+
+## Phase 2: Data & Content
+- [ ] สร้างระบบ Search & Filter
+- [ ] ระบบ Localization (EN/TH)
+- [ ] Data Scraping Scripts (Python)
+- [ ] เพิ่มข้อมูลเกมจริง
+
+## Phase 3: Advanced Features
+- [ ] Stat Calculator
+- [ ] Skill Simulator
+- [ ] Build Planner
+- [ ] User Accounts & Bookmarks
+
+## Phase 4: Production
+- [ ] Backend API (Node.js/Express)
+- [ ] PostgreSQL Database
+- [ ] Authentication
+- [ ] Deployment & CDN
+
+---
+
+## Database Schema
+
+### Core Tables
+
+```mermaid
+erDiagram
+    ITEMS ||--o{ DROP_LIST : "dropped as"
+    MONSTERS ||--o{ DROP_LIST : "drops"
+    MONSTERS ||--o{ MONSTER_LOCATIONS : "found at"
+    MAPS ||--o{ MONSTER_LOCATIONS : "contains"
+    ITEMS ||--o{ ITEM_STATS : "has"
+    SKILLS ||--o{ SKILL_EFFECTS : "has"
+    SKILL_TREES ||--o{ SKILLS : "contains"
+
+    ITEMS {
+        int id PK
+        string name_en
+        string name_th
+        string type "weapon|armor|additional|special|crystal|material|consumable"
+        string sub_type "sword|bow|staff|etc"
+        int level_req
+        int sell_price
+        string image_url
+        boolean is_tradeable
+        string obtain_method
+        timestamp created_at
+        timestamp updated_at
+    }
+
+    ITEM_STATS {
+        int id PK
+        int item_id FK
+        string stat_name "ATK|MATK|DEF|MDEF|HP|MP|etc"
+        float base_value
+        float max_value
+        string stat_type "flat|percent"
+    }
+
+    MONSTERS {
+        int id PK
+        string name_en
+        string name_th
+        string type "normal|mini_boss|boss|event_boss"
+        int level
+        int hp
+        string element "neutral|fire|water|wind|earth|light|dark"
+        int exp_reward
+        string image_url
+        text note_th
+        timestamp created_at
+        timestamp updated_at
+    }
+
+    MAPS {
+        int id PK
+        string name_en
+        string name_th
+        string region
+        int level_range_min
+        int level_range_max
+        string image_url
+    }
+
+    MONSTER_LOCATIONS {
+        int id PK
+        int monster_id FK
+        int map_id FK
+        string spawn_point
+    }
+
+    DROP_LIST {
+        int id PK
+        int monster_id FK
+        int item_id FK
+        float drop_rate
+        boolean is_breakable "dye/break drop"
+        string condition "normal|break|rare"
+    }
+
+    SKILLS {
+        int id PK
+        int skill_tree_id FK
+        string name_en
+        string name_th
+        string type "active|passive|support"
+        int max_level
+        int mp_cost
+        text description_en
+        text description_th
+        string image_url
+    }
+
+    SKILL_TREES {
+        int id PK
+        string name_en
+        string name_th
+        string category "blade|shot|magic|martial|dual|halberd|mononofu|barehand|ninja|smith|alchemy|tamer|survival|support"
+    }
+
+    SKILL_EFFECTS {
+        int id PK
+        int skill_id FK
+        int skill_level
+        float damage_multiplier
+        float mp_cost
+        int cast_time_ms
+        int cooldown_ms
+        text effect_description
+    }
+```
+
+### Item Types Reference
+| Type | Sub Types |
+|------|-----------|
+| weapon | sword, bow, bowgun, staff, magic_device, halberd, katana, knuckle, dual_sword, barehand |
+| armor | body_armor, additional_gear, special_gear |
+| crystal | weapon_crystal, armor_crystal, special_crystal, enhancer_crystal |
+| material | mob_drop, quest_item, processing_material |
+| consumable | hp_potion, mp_potion, buff_item, food |
+
+### Monster Element Chart
+| Element | Strong Against | Weak Against |
+|---------|---------------|-------------|
+| 🔥 Fire | Wind, Earth | Water |
+| 💧 Water | Fire | Wind |
+| 🌪️ Wind | Water | Earth |
+| 🌍 Earth | Wind | Fire |
+| ✨ Light | Dark | Dark |
+| 🌑 Dark | Light | Light |
+| ⚪ Neutral | - | - |
