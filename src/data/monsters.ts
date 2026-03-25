@@ -57,7 +57,7 @@ export const monsters: Monster[] = [
     element: "fire",
     exp_reward: 1100,
     note_th: "ต้องการการหลบหลีกที่ดี ระวังสกิลพุ่งชนและทุบพื้น (พังแตกได้ที่บริเวณเขาเป้าหมาย)",
-    image_url: "/images/monsters/bosses/minotaur_boss.png",
+    image_url: "/images/monsters/bosses/minotaur_boss.webp",
     locations: [{ map_name_en: "Ruined Temple: Forbidden Hall", map_name_th: "วิหารซากปรักหักพัง: ห้องต้องห้าม" }],
     drops: [
       { item_id: 3, item_name_en: "Minotaur Skin", item_name_th: "หนังมิโนทอร์", drop_rate: 40.0, condition: "normal" },

@@ -71,7 +71,7 @@ export const items: Item[] = [
     sell_price: 600,
     is_tradeable: true,
     obtain_method: "Boss Drop",
-    image_url: "/images/items/weapons/volg_sword.png",
+    image_url: "/images/items/weapons/volg_sword.webp",
     stats: [
       { stat_name: "ATK", base_value: 52, max_value: 62, stat_type: "flat" },
       { stat_name: "Fire Element", base_value: 1, stat_type: "flat" },
