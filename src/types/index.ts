@@ -7,7 +7,7 @@ export interface ItemStat {
 
 export interface Item {
   id: number;
-  name_en: string;
+  name_en?: string;
   name_th: string;
   type: 'weapon' | 'armor' | 'additional' | 'special' | 'crystal' | 'material' | 'consumable';
   sub_type: string;
@@ -22,7 +22,7 @@ export interface Item {
 
 export interface Monster {
   id: number;
-  name_en: string;
+  name_en?: string;
   name_th: string;
   type: 'normal' | 'mini_boss' | 'boss' | 'event_boss';
   level: number;
@@ -31,26 +31,26 @@ export interface Monster {
   exp_reward: number;
   image_url?: string;
   note_th?: string;
-  locations: { map_name_en: string; map_name_th: string }[];
-  drops: { item_id: number; item_name_en: string; item_name_th: string; drop_rate: number; condition: string }[];
+  locations: { map_name_en?: string; map_name_th: string }[];
+  drops: { item_id: number; item_name_en?: string; item_name_th: string; drop_rate: number; condition: string }[];
 }
 
 export interface Skill {
   id: number;
   skill_tree: string;
   skill_tree_th: string;
-  name_en: string;
+  name_en?: string;
   name_th: string;
   type: 'active' | 'passive' | 'support';
   max_level: number;
   mp_cost: number;
-  description_en: string;
+  description_en?: string;
   description_th: string;
 }
 
 export interface MapArea {
   id: number;
-  name_en: string;
+  name_en?: string;
   name_th: string;
   region: string;
   level_range_min: number;

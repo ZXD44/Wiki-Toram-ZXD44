@@ -1,6 +1,6 @@
 import type { ElementType, MonsterType, ItemType } from '../types';
 
-const elementConfig: Record<ElementType, { emoji: string; label: string; color: string }> = {
+export const elementConfig: Record<ElementType, { emoji: string; label: string; color: string }> = {
   fire:    { emoji: '🔥', label: 'ไฟ',   color: 'text-element-fire' },
   water:   { emoji: '💧', label: 'น้ำ',   color: 'text-element-water' },
   wind:    { emoji: '🌪️', label: 'ลม',   color: 'text-element-wind' },
@@ -9,6 +9,8 @@ const elementConfig: Record<ElementType, { emoji: string; label: string; color: 
   dark:    { emoji: '🌑', label: 'มืด',   color: 'text-element-dark' },
   neutral: { emoji: '⚪', label: 'ไร้ธาตุ', color: 'text-element-neutral' },
 };
+
+
 
 export function ElementBadge({ element }: { element: ElementType }) {
   const config = elementConfig[element];
@@ -20,7 +22,7 @@ export function ElementBadge({ element }: { element: ElementType }) {
   );
 }
 
-const monsterTypeConfig: Record<MonsterType, { label: string; color: string; bg: string }> = {
+export const monsterTypeConfig: Record<MonsterType, { label: string; color: string; bg: string }> = {
   normal:     { label: 'ปกติ',       color: 'text-surface-200/70', bg: 'bg-surface-700/30' },
   mini_boss:  { label: 'มินิบอส',    color: 'text-amber-400',      bg: 'bg-amber-500/10' },
   boss:       { label: 'บอส',        color: 'text-red-400',        bg: 'bg-red-500/10' },
@@ -36,7 +38,7 @@ export function MonsterTypeBadge({ type }: { type: MonsterType }) {
   );
 }
 
-const itemTypeConfig: Record<ItemType, { label: string; icon: string; color: string }> = {
+export const itemTypeConfig: Record<ItemType, { label: string; icon: string; color: string }> = {
   weapon:     { label: 'อาวุธ',        icon: '⚔️', color: 'text-red-400' },
   armor:      { label: 'เกราะ',        icon: '🛡️', color: 'text-blue-400' },
   additional: { label: 'เสริม',        icon: '💍', color: 'text-green-400' },
@@ -85,4 +87,51 @@ export function formatHP(hp: number): string {
 
 export function formatNumber(num: number): string {
   return num.toLocaleString('th-TH');
+}
+
+export function getItemSubTypeIcon(subType: string): string {
+  const map: Record<string, string> = {
+    sword: '🗡️', bow: '🏹', bowgun: '🔫', staff: '🪄', magic_device: '🔮',
+    halberd: '🪓', katana: '⚔️', knuckle: '🥊', dual_sword: '⚔️',
+    body_armor: '🛡️', weapon_crystal: '💎', armor_crystal: '💎',
+    mob_drop: '📦', boss_drop: '📦',
+    wood: '🪵', leaf: '🌿', stone: '🪨', animal_skin: '🐾',
+    additional_gear: '🎩', shield: '🛡️', teleport: '🗺️',
+  };
+  return map[subType] || '📦';
+}
+
+export function getSubTypeThai(subType: string): string {
+  const map: Record<string, string> = {
+    sword: 'ดาบ', bow: 'ธนู', bowgun: 'หน้าไม้', staff: 'ไม้เท้า', magic_device: 'เครื่องราง',
+    halberd: 'หอก', katana: 'ดาบซามูไร', knuckle: 'สนับมือ', dual_sword: 'ดาบสเปเชียล',
+    body_armor: 'ชุดเกราะ', weapon_crystal: 'คริสตัลอาวุธ', armor_crystal: 'คริสตัลชุดเกราะ',
+    mob_drop: 'วัตถุดิบดรอป', boss_drop: 'วัตถุดิบบอส',
+    wood: 'ไม้', leaf: 'ใบไม้', stone: 'หิน', animal_skin: 'หนังสัตว์',
+    additional_gear: 'อุปกรณ์เสริม', shield: 'โล่', teleport: 'วาร์ป',
+    // Main Types fallback
+    weapon: 'อาวุธ', armor: 'เกราะ', additional: 'อุปกรณ์เสริม', crystal: 'คริสตัล', material: 'วัตถุดิบ', consumable: 'ของใช้',
+  };
+  return map[subType] || subType;
+}
+
+export function getStatThai(stat: string): string {
+  const map: Record<string, string> = {
+    'ATK': 'พลังโจมตี (ATK)',
+    'MATK': 'โจมตีเวทย์ (MATK)',
+    'DEF': 'พลังป้องกัน (DEF)',
+    'MDEF': 'ต้านทานเวทย์ (MDEF)',
+    'Max HP': 'HP สูงสุด',
+    'Max MP': 'MP สูงสุด',
+    'Critical Rate': 'อัตราคริ',
+    'Critical Damage': 'ความแรงคริ',
+    'ASPD': 'ความเร็วโจมตี',
+    'CSPD': 'ความเร็วร่าย',
+    'Accuracy': 'ความแม่นยำ',
+    'Evasion': 'การหลบหลีก',
+    'Stability': 'ความเสถียร',
+    'Physical Resistance': 'ต้านทานกายภาพ',
+    'Magical Resistance': 'ต้านทานเวทย์',
+  };
+  return map[stat] || stat;
 }

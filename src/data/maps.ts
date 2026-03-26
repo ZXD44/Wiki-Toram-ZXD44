@@ -24,6 +24,8 @@ export const maps: MapArea[] = [
   { id: 104, name_en: "Ruined Temple", name_th: "วิหารซากปรักหักพัง", region: "Chapter 1", level_range_min: 15, level_range_max: 25 },
   { id: 105, name_en: "Ruined Temple: Forbidden Hall", name_th: "วิหารซากปรักหักพัง: ห้องต้องห้าม", region: "Chapter 1", level_range_min: 30, level_range_max: 35 },
   { id: 106, name_en: "Ribisco Cave", name_th: "ถ้ำริบิสโก", region: "Chapter 1", level_range_min: 15, level_range_max: 25 },
+  { id: 107, name_en: "Land Under Development", name_th: "พื้นที่กำลังพัฒนา (เขตก่อสร้าง)", region: "Chapter 1", level_range_min: 5, level_range_max: 15 },
+
 
   // ==========================================
   // บทที่ 2: รูรับแสงของโลก

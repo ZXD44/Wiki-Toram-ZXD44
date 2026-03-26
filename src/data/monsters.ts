@@ -126,4 +126,71 @@ export const monsters: Monster[] = [
       { item_id: 8, item_name_en: "Boss Roga Crysta", item_name_th: "คริสตัลบอสโรกา", drop_rate: 1.0, condition: "normal" }
     ],
   },
+  {
+    id: 10,
+    name_th: "โคลอน (เขตก่อสร้าง)",
+    type: "normal",
+    level: 5,
+    hp: 200,
+    element: "earth",
+    exp_reward: 6,
+    locations: [{ map_name_th: "พื้นที่กำลังพัฒนา (เขตก่อสร้าง)" }],
+    drops: [
+      { item_id: 101, item_name_th: "ใบโคลอน", drop_rate: 30, condition: "normal" },
+      { item_id: 102, item_name_th: "หนังโคลอน", drop_rate: 20, condition: "normal" },
+      { item_id: 103, item_name_th: "ก้อนหิน", drop_rate: 40, condition: "normal" },
+      { item_id: 111, item_name_th: "ริบบิ้น (อุปกรณ์เสริม)", drop_rate: 1, condition: "normal" }
+    ],
+  },
+  {
+    id: 11,
+    name_th: "แพลนต้า",
+    type: "normal",
+    level: 4,
+    hp: 180,
+    element: "earth",
+    exp_reward: 5,
+    locations: [{ map_name_th: "พื้นที่กำลังพัฒนา (เขตก่อสร้าง)" }],
+    drops: [
+      { item_id: 104, item_name_th: "เศษไม้", drop_rate: 35, condition: "normal" },
+      { item_id: 105, item_name_th: "ไม้เล็ก", drop_rate: 25, condition: "normal" },
+      { item_id: 106, item_name_th: "ลูกไม้", drop_rate: 15, condition: "normal" },
+      { item_id: 112, item_name_th: "โล่ไม้", drop_rate: 2, condition: "normal" }
+    ],
+  },
+  {
+    id: 12,
+    name_th: "ทอร์โป",
+    type: "normal",
+    level: 7,
+    hp: 350,
+    element: "earth",
+    exp_reward: 12,
+    locations: [{ map_name_th: "พื้นที่กำลังพัฒนา (เขตก่อสร้าง)" }],
+    drops: [
+      { item_id: 107, item_name_th: "ขนหนู", drop_rate: 30, condition: "normal" },
+      { item_id: 104, item_name_th: "เศษไม้", drop_rate: 20, condition: "normal" },
+      { item_id: 108, item_name_th: "เข็มสกปรก", drop_rate: 10, condition: "normal" },
+      { item_id: 110, item_name_th: "คริสตาธรรมดา", drop_rate: 0.5, condition: "normal" }
+    ],
+  },
+  {
+    id: 13,
+    name_th: "บอสโคลอน (Boss)",
+    type: "boss",
+    level: 7,
+    hp: 1000,
+    element: "earth",
+    exp_reward: 30,
+    note_th: "บอสในเขตก่อสร้าง มี 5 ไอเทมดรอป",
+    locations: [{ map_name_th: "พื้นที่กำลังพัฒนา (เขตก่อสร้าง)" }],
+    drops: [
+      { item_id: 101, item_name_th: "ใบโคลอน", drop_rate: 40, condition: "normal" },
+      { item_id: 2, item_name_th: "หนังบอสโคลอน", drop_rate: 20, condition: "normal" },
+      { item_id: 109, item_name_th: "ใบวาร์ปเมืองโซเฟีย", drop_rate: 5, condition: "normal" },
+      { item_id: 111, item_name_th: "ริบบิ้น (อุปกรณ์เสริม)", drop_rate: 2, condition: "normal" },
+      { item_id: 110, item_name_th: "คริสตาธรรมดา", drop_rate: 1, condition: "normal" }
+    ],
+  },
 ];
+

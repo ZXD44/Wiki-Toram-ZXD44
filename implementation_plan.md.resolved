@@ -1,49 +1,80 @@
 # 🎮 Wiki Toram Online - Implementation Plan
 
-## Overview
-เว็บไซต์ Wiki สำหรับเกม Toram Online เวอร์ชันภาษาไทย ออกแบบมาเพื่อให้ผู้เล่นชาวไทยเข้าถึงข้อมูลเกมได้ง่ายและสวยงาม
-
-## Tech Stack
-| Layer | Technology |
-|-------|-----------|
-| Frontend | React 19 + Vite |
-| Styling | TailwindCSS v4 |
-| Routing | React Router v7 |
-| State | React Context + useReducer |
-| Data | JSON files (Phase 1) → PostgreSQL (Phase 4) |
-| Deployment | Vercel / VPS + Nginx |
-
-## Phase 1: Foundation (Current)
-- [x] สร้างโปรเจกต์ React + Vite + TailwindCSS
-- [x] ออกแบบ Database Schema
-- [x] สร้าง UI Components พื้นฐาน
-- [x] หน้า Landing Page
-- [x] หน้ารายการ Items / Monsters
-- [x] หน้ารายละเอียดข้อมูล
-
-## Phase 2: Data & Content
-- [ ] สร้างระบบ Search & Filter
-- [ ] ระบบ Localization (EN/TH)
-- [ ] Data Scraping Scripts (Python)
-- [ ] เพิ่มข้อมูลเกมจริง
-
-## Phase 3: Advanced Features
-- [ ] Stat Calculator
-- [ ] Skill Simulator
-- [ ] Build Planner
-- [ ] User Accounts & Bookmarks
-
-## Phase 4: Production
-- [ ] Backend API (Node.js/Express)
-- [ ] PostgreSQL Database
-- [ ] Authentication
-- [ ] Deployment & CDN
+> [!NOTE]
+> แผนการดำเนินงานและโครงสร้างระบบสำหรับโปรเจกต์ **Wiki Toram Online TH** พัฒนาด้วยเทคโนโลยีสมัยใหม่ เพื่อประสิทธิภาพและความสวยงาม
 
 ---
 
-## Database Schema
+## 📌 สารบัญ (Table of Contents)
+- [✨ ภาพรวมระบบ (System Overview)](#-ภาพรวมระบบ-system-overview)
+- [🛠️ เทคโนโลยที่ใช้ (Tech Stack)](#️-เทคโนโลยที่ใช้-tech-stack)
+- [📈 ระยะเวลาการพัฒนา (Development Phases)](#-ระยะเวลาการพัฒนา-development-phases)
+- [🧬 โครงสร้างฐานข้อมูล (Database Schema)](#-โครงสร้างฐานข้อมูล-database-schema)
+- [📋 อ้างอิงข้อมูลเกม (Game Data Reference)](#-อ้างอิงข้อมูลเกม-game-data-reference)
 
-### Core Tables
+---
+
+## ✨ ภาพรวมระบบ (System Overview)
+เว็บไซต์ Wiki เวอร์ชันภาษาไทยที่ทันสมัยที่สุดสำหรับเกม **Toram Online** ออกแบบมาเพื่อให้ผู้เล่นเข้าถึงข้อมูลได้รวดเร็ว พร้อมระบบคำนวณสเตตัสและวางแผนตัวละครในอนาคต
+
+---
+
+## 🛠️ เทคโนโลยีที่ใช้ (Tech Stack)
+
+| เลเยอร์ (Layer) | เทคโนโลยี (Technology) | รายละเอียด |
+| :--- | :--- | :--- |
+| **Frontend** | `React 19` + `Vite` | ความเร็วสูงและรองรับ Hook ใหม่ล่าสุด |
+| **Styling** | `TailwindCSS v4` | ออกแบบ UI แบบ Glassmorphism & Modern Dark Theme |
+| **Routing** | `React Router v7` | จัดการเส้นทางหน้าเว็บอย่างรวดเร็ว |
+| **State** | `React Context` + `useReducer` | จัดการข้อมูลภายในแอปแบบ Lightweight |
+| **Data** | `JSON` ➡️ `PostgreSQL` | เริ่มจากไฟล์ JSON และย้ายสู่ฐานข้อมูลจริงภายหลัง |
+| **Deployment** | `GitHub Pages` / `Vercel` | รองรับ CI/CD อัตโนมัติ |
+
+---
+
+## 📈 ระยะเวลาการพัฒนา (Development Phases)
+
+```mermaid
+graph TD
+    P1[Phase 1: Foundation] --> P2[Phase 2: Data & Content]
+    P2 --> P3[Phase 3: Advanced Features]
+    P3 --> P4[Phase 4: Production]
+
+    style P1 fill:#4F46E5,color:#fff
+    style P2 fill:#0EA5E9,color:#fff
+    style P3 fill:#10B981,color:#fff
+    style P4 fill:#F59E0B,color:#fff
+```
+
+### 🔵 Phase 1: Foundation (ปัจจุบัน)
+> [!TIP]
+> ส่วนโครงสร้างพื้นฐานเสร็จสิ้นเกือบ 100% แล้ว
+- [x] **Project Setup**: React + Vite + TailwindCSS v4
+- [x] **Architecture**: ออกแบบ Database Schema ครอบคลุมทั้งไอเทมและมอนสเตอร์
+- [x] **UI Components**: ปุ่ม, การ์ด, Navbar, Footer, Element Badge
+- [x] **Pages**: Landing Page, Items List, Monsters List, Detail Pages
+
+### 🟢 Phase 2: Data & Content
+- [ ] **Search Engine**: ค้นหาแบบ Real-time และระบบ Filter ขั้นสูง
+- [ ] **Localization**: รองรับการสลับภาษา (EN/TH)
+- [ ] **Automation**: สคริปต์ดึงข้อมูล (Scraping) จากแหล่งอ้างอิง
+- [ ] **Content**: นำเข้าข้อมูลบอสและไอเทมระดับสูงทั้งหมด
+
+### 🟡 Phase 3: Advanced Features
+- [ ] **Calculators**: ระบบคำนวณ Stat และจำลองพลังทำลาย (Damage Simulator)
+- [ ] **Skill Planner**: จำลองการอัปสกิลและการเชื่อมโยง Skill Tree
+- [ ] **Community**: ระบบ Bookmark บันทึกไอเทมที่สนใจ
+
+### 🟠 Phase 4: Production
+- [ ] **Backend API**: พัฒนาด้วย Node.js (Express)
+- [ ] **Database**: ย้ายไปใช้ PostgreSQL เพื่อรองรับข้อมูลจำนวนมาก
+- [ ] **Auth**: ระบบสมาชิกและกิลด์พอร์ทัล
+
+---
+
+## 🧬 โครงสร้างฐานข้อมูล (Database Schema)
+
+### แผนผังความสัมพันธ์ (Entity Relationship)
 
 ```mermaid
 erDiagram
@@ -59,21 +90,19 @@ erDiagram
         int id PK
         string name_en
         string name_th
-        string type "weapon|armor|additional|special|crystal|material|consumable"
+        string type "weapon|armor|crystal|material|consumable"
         string sub_type "sword|bow|staff|etc"
         int level_req
         int sell_price
         string image_url
         boolean is_tradeable
         string obtain_method
-        timestamp created_at
-        timestamp updated_at
     }
 
     ITEM_STATS {
         int id PK
         int item_id FK
-        string stat_name "ATK|MATK|DEF|MDEF|HP|MP|etc"
+        string stat_name "ATK|MATK|HP|MP|etc"
         float base_value
         float max_value
         string stat_type "flat|percent"
@@ -83,15 +112,13 @@ erDiagram
         int id PK
         string name_en
         string name_th
-        string type "normal|mini_boss|boss|event_boss"
+        string type "normal|mini_boss|boss|event"
         int level
         int hp
-        string element "neutral|fire|water|wind|earth|light|dark"
+        string element "fire|water|wind|earth|light|dark|neutral"
         int exp_reward
         string image_url
         text note_th
-        timestamp created_at
-        timestamp updated_at
     }
 
     MAPS {
@@ -116,7 +143,7 @@ erDiagram
         int monster_id FK
         int item_id FK
         float drop_rate
-        boolean is_breakable "dye/break drop"
+        boolean is_breakable "item from part break"
         string condition "normal|break|rare"
     }
 
@@ -128,16 +155,13 @@ erDiagram
         string type "active|passive|support"
         int max_level
         int mp_cost
-        text description_en
-        text description_th
-        string image_url
     }
 
     SKILL_TREES {
         int id PK
         string name_en
         string name_th
-        string category "blade|shot|magic|martial|dual|halberd|mononofu|barehand|ninja|smith|alchemy|tamer|survival|support"
+        string category "blade|shot|magic|etc"
     }
 
     SKILL_EFFECTS {
@@ -145,29 +169,41 @@ erDiagram
         int skill_id FK
         int skill_level
         float damage_multiplier
-        float mp_cost
         int cast_time_ms
-        int cooldown_ms
         text effect_description
     }
 ```
 
-### Item Types Reference
-| Type | Sub Types |
-|------|-----------|
-| weapon | sword, bow, bowgun, staff, magic_device, halberd, katana, knuckle, dual_sword, barehand |
-| armor | body_armor, additional_gear, special_gear |
-| crystal | weapon_crystal, armor_crystal, special_crystal, enhancer_crystal |
-| material | mob_drop, quest_item, processing_material |
-| consumable | hp_potion, mp_potion, buff_item, food |
+---
 
-### Monster Element Chart
-| Element | Strong Against | Weak Against |
-|---------|---------------|-------------|
-| 🔥 Fire | Wind, Earth | Water |
-| 💧 Water | Fire | Wind |
-| 🌪️ Wind | Water | Earth |
-| 🌍 Earth | Wind | Fire |
-| ✨ Light | Dark | Dark |
-| 🌑 Dark | Light | Light |
-| ⚪ Neutral | - | - |
+## 📋 อ้างอิงข้อมูลเกม (Game Data Reference)
+
+### 🏷️ ประเภทสิ่งของ (Item Classification)
+| หมวดหลัก | หมวดย่อย (Sub-types) |
+| :--- | :--- |
+| **⚔️ Weapon** | Sword, Bow, Bowgun, Staff, MD, Halberd, Katana, Knuckle, Dual, Barehand |
+| **🛡️ Armor** | Body Armor, Additional Gear, Special Gear |
+| **💎 Crystal** | Weapon, Armor, Special, Enhancer (Crysta) |
+| **📦 Material** | Mob Drop, Quest, Processing |
+| **🧪 Consumable** | HP, MP, Buff, Food |
+
+### ⚡ แผนผังธาตุ (Elemental Affinities)
+> [!IMPORTANT]
+> การแพ้ธาตุใน Toram Online มีผลอย่างมากต่อดาเมจถึง **+25%**
+
+| ธาตุ (Element) | ชนะทาง (Strong Against) | แพ้ทาง (Weak Against) |
+| :---: | :--- | :--- |
+| **🔥 Fire** | 🌪️ Wind, 🌍 Earth | 💧 Water |
+| **💧 Water** | 🔥 Fire | 🌪️ Wind |
+| **🌪️ Wind** | 💧 Water | 🌍 Earth |
+| **🌍 Earth** | 🌪️ Wind | 🔥 Fire |
+| **✨ Light** | 🌑 Dark | 🌑 Dark |
+| **🌑 Dark** | ✨ Light | ✨ Light |
+| **⚪ Neutral** | - | - |
+
+---
+
+<p align="center">
+  <b>🌟 Wiki Toram Online TH Implementation Plan 🌟</b><br>
+  <i>"Fast, Clean, and Reliable Data for Thai Players"</i>
+</p>

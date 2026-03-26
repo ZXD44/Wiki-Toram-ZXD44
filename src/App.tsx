@@ -9,10 +9,12 @@ import MonsterDetailPage from './pages/MonsterDetailPage';
 import MapsPage from './pages/MapsPage';
 import SkillsPage from './pages/SkillsPage';
 import SearchPage from './pages/SearchPage';
+import ScrollToTop from './components/ScrollToTop';
 
 export default function App() {
   return (
     <HashRouter>
+      <ScrollToTop />
       <div className="flex flex-col min-h-screen">
         <Navbar />
         <main className="flex-1">
